@@ -3,20 +3,51 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  /*
+     ---- Multiple States ----
+    const [enteredTitle, setEnteredTitle] = useState("");
+    const [enteredAmount, setEnteredAmount] = useState("");
+    const [enteredDate, setEnteredDate] = useState("");
+
+    const titleChangeHandler = (event) => {
+        setEnteredTitle(event.target.value); // set the new value of form control.. just to store the value
+    };
+
+    const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+    };
+
+    const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+    };
+    */
+
+  /* ---- Single State and handle all the inputs ---- */
+  /* Note: only change the particular control state, rest should remain same, hence spread operator */
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value); // set the new value of form control.. just to store the value
+    // spread operator
+    setUserInput({ ...userInput, enteredTitle: event.target.value });
+
+    // manual assignment
+    /* setUserInput({
+      enteredTitle: event.target.value, // New Value
+      enteredAmount: userInput.enteredAmount, // Old Value
+      enteredDate: userInput.enteredDate,
+    }); */
   };
 
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
+    setUserInput({ ...userInput, enteredAmount: event.target.value });
   };
 
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+    setUserInput({ ...userInput, enteredDate: event.target.value });
   };
 
   return (
