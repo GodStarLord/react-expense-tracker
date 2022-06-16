@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  /*
-     ---- Multiple States ----
+  
+     /*---- Multiple States ----*/
     const [enteredTitle, setEnteredTitle] = useState("");
     const [enteredAmount, setEnteredAmount] = useState("");
     const [enteredDate, setEnteredDate] = useState("");
@@ -20,24 +20,23 @@ const ExpenseForm = () => {
     const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
     };
-    */
 
   /* ---- Single State and handle all the inputs ---- */
   /* Note: only change the particular control state, rest should remain same, hence spread operator */
-  const [userInput, setUserInput] = useState({
+  /* const [userInput, setUserInput] = useState({
     enteredTitle: "",
     enteredAmount: "",
     enteredDate: "",
-  });
+  }); */
 
-  const titleChangeHandler = (event) => {
+  /* const titleChangeHandler = (event) => {
     // state update depends upon previous state
     setUserInput((previousState) => {
       return {
         ...userInput,
         enteredTitle: event.target.value,
       };
-    });
+    }); */
 
     // spread operator
     //setUserInput({ ...userInput, enteredTitle: event.target.value });
@@ -47,10 +46,10 @@ const ExpenseForm = () => {
       enteredTitle: event.target.value, // New Value
       enteredAmount: userInput.enteredAmount, // Old Value
       enteredDate: userInput.enteredDate,
-    }); */
-  };
+    }); 
+  }; */
 
-  const amountChangeHandler = (event) => {
+  /* const amountChangeHandler = (event) => {
     //setUserInput({ ...userInput, enteredAmount: event.target.value });
 
     setUserInput((previousState) => {
@@ -59,9 +58,9 @@ const ExpenseForm = () => {
         enteredAmount: event.target.value,
       };
     });
-  };
+  }; */
 
-  const dateChangeHandler = (event) => {
+  /* const dateChangeHandler = (event) => {
     //setUserInput({ ...userInput, enteredDate: event.target.value });
 
     setUserInput((previousState) => {
@@ -70,7 +69,7 @@ const ExpenseForm = () => {
         enteredDate: event.target.value,
       };
     });
-  };
+  }; */
 
   return (
     <form>
