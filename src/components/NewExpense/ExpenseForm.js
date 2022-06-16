@@ -3,23 +3,22 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  
-     /*---- Multiple States ----*/
-    const [enteredTitle, setEnteredTitle] = useState("");
-    const [enteredAmount, setEnteredAmount] = useState("");
-    const [enteredDate, setEnteredDate] = useState("");
+  /*---- Multiple States ----*/
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
-    const titleChangeHandler = (event) => {
-        setEnteredTitle(event.target.value); // set the new value of form control.. just to store the value
-    };
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value); // set the new value of form control.. just to store the value
+  };
 
-    const amountChangeHandler = (event) => {
+  const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-    };
+  };
 
-    const dateChangeHandler = (event) => {
+  const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-    };
+  };
 
   /* ---- Single State and handle all the inputs ---- */
   /* Note: only change the particular control state, rest should remain same, hence spread operator */
@@ -38,11 +37,11 @@ const ExpenseForm = () => {
       };
     }); */
 
-    // spread operator
-    //setUserInput({ ...userInput, enteredTitle: event.target.value });
+  // spread operator
+  //setUserInput({ ...userInput, enteredTitle: event.target.value });
 
-    // manual assignment
-    /* setUserInput({
+  // manual assignment
+  /* setUserInput({
       enteredTitle: event.target.value, // New Value
       enteredAmount: userInput.enteredAmount, // Old Value
       enteredDate: userInput.enteredDate,
@@ -71,8 +70,20 @@ const ExpenseForm = () => {
     });
   }; */
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    console.log(expenseData);
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
