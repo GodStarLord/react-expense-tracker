@@ -1,44 +1,48 @@
-import React from 'react';
+import React, { useState } from "react";
 
 import Expenses from "./components/Expenses/Expenses";
-import NewExpense from './components/NewExpense/NewExpense';
+import NewExpense from "./components/NewExpense/NewExpense";
+
+const DUMMY_EXPENSES = [
+  {
+    id: "e1",
+    title: "Car Insurance",
+    amount: 21.4,
+    date: new Date(2021, 2, 4),
+  },
+  {
+    id: "e2",
+    title: "Health Insurance",
+    amount: 5422.4,
+    date: new Date(2021, 2, 4),
+  },
+  {
+    id: "e3",
+    title: "Bike Insurance",
+    amount: 413.4,
+    date: new Date(2021, 2, 4),
+  },
+  {
+    id: "e4",
+    title: "Plane Insurance",
+    amount: 3312321.4,
+    date: new Date(2021, 2, 4),
+  },
+];
 
 function App() {
-  const expenses = [
-    {
-      id: "e1",
-      title: "Car Insurance",
-      amount: 21.4,
-      date: new Date(2021, 2, 4),
-    },
-    {
-      id: "e2",
-      title: "Health Insurance",
-      amount: 5422.4,
-      date: new Date(2021, 2, 4),
-    },
-    {
-      id: "e3",
-      title: "Bike Insurance",
-      amount: 413.4,
-      date: new Date(2021, 2, 4),
-    },
-    {
-      id: "e4",
-      title: "Plane Insurance",
-      amount: 3312321.4,
-      date: new Date(2021, 2, 4),
-    },
-  ];
+  const [expensesArray, setExpensesArray] = useState(DUMMY_EXPENSES);
 
-  const addExpenseHandler = newexpense => {
-    console.log("In App.js");
-  }
+  const addExpenseHandler = (newexpense) => {
+    setExpensesArray((previousExpenses) => {
+      return [newexpense, ...previousExpenses];
+    });
+  };
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+      <Expenses items={expensesArray} />
     </div>
   );
 }
